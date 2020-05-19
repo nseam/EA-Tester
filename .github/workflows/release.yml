@@ -1,0 +1,13 @@
+---
+name: Release
+
+on:
+  - pull_request
+  - push
+jobs:
+  Release:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./.github/workflows/release.ps1
+        shell: powershell
