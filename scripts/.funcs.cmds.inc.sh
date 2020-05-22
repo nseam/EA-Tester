@@ -370,7 +370,7 @@ compile() {
   set +e
 
   # Run compiler.
-  WINEPATH="$(winepath -w "$TERMINAL_DIR")" wine metaeditor.exe /compile:"$target" /log:"$log_file" ${@:3} >&2
+  WINEPATH="$(winepath -w "$TERMINAL_DIR")" wine "$MTEDITOR_EXE" /compile:"$target" /portable /log:"$log_file" ${@:3} >&2
   compiled_no=$?
   # Reset errexit to the previous value.
   [[ $errexit -eq 0 ]] && set -e

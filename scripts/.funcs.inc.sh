@@ -62,7 +62,7 @@ join_by() {
 # Usage: check_files
 check_files() {
   if [ "$SERVER" != "default" ] && [ -w "$TERMINAL_HST/$SERVER" ]; then
-    [ -s "$(get_path_symbols_raw)" ] && cp $VFLAG "$TERMINAL_HST/default/symbols.raw" "$TERMINAL_HST/$SERVER/symbols.raw"
+    [ -s "$(get_path_symbols_raw)" ] && cp $VFLAG "$TERMINAL_HST/default/symbols.raw" "$TERMINAL_HST/$SERVER/symbols.raw" || true
   fi
 }
 
@@ -86,6 +86,7 @@ check_dirs() {
 # Usage: get_time
 get_time() {
   if [ -f "$TERMINAL_LOG" ]; then
+    cat "$TERMINAL_LOG"
     echo $(grep -o "^real[^m]\+" "$TERMINAL_LOG" | cut -f 2)
   else
     echo 0
