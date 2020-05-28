@@ -828,6 +828,7 @@ clean_files
 # Kill on error condition when running script.
 if [ -n "$SCRIPT" ]; then
   kill_on_match &
+  kill_on_memory_match &
 fi
 
 # Show live logs and stats when in verbose mode.

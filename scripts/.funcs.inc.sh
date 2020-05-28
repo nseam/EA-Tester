@@ -286,7 +286,7 @@ show_trace() {
 # Usage: kill_on_match (interval)
 kill_on_match() {
   local interval=${1:-10}
-  local errors=("cannot open" "not initialized" "initialization failed" "uninit reason")
+  local errors=("cannot open" "not initialized" "initialization failed" "uninit reason", "loaded successfully")
   # Check MQL4 logs for errors (e.g. MQL4/Logs/20180717.log).
   {
     set +x
@@ -300,7 +300,22 @@ kill_on_match() {
         # In case of error, kill the wine process.
         kill_wine
       fi
+      # Checking memory for "loaded successfully" string.
     done &
+  }
+}
+
+# Checks if process' heap memory contains given text and kills wine on match.
+# Usage: kill_on_memory_match interval_in_seconds pid_or_process_name text_to_match
+kill_on_memory_match() {
+  local interval=10
+  {
+    set -x
+    while sleep $interval; do
+      WINEDEBUG=warn+all
+      wine "$PROCDUMP" "-o" "-accepteula" "-mp" "$TERMINAL_PROCESS_NAME" "C:\\memory.dmp"
+      cat /home/ubuntu/.wine/drive_c/memory.dmp | grep "$(echo "loaded successfully" | iconv -f UTF-8 -t utf-16le)" | wc -l
+    done
   }
 }
 

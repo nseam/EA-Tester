@@ -53,6 +53,8 @@ is_mt5 && {
   TERMINAL_DIR="$TERMINAL5_DIR"
   TERMINAL_EXE="$TERMINAL5_EXE"
   TERMINAL_HST="$TERMINAL5_HST"
+  PROCDUMP="/opt/scripts/procdump64.exe"
+  TERMINAL_PROCESS_NAME="terminal64.exe"
 } || {
   MTEDITOR_EXE="$MTEDITOR4_EXE"
   TERMINAL_ARG_CFG="config/$CONF_TEST"
@@ -60,6 +62,8 @@ is_mt5 && {
   TERMINAL_DIR="$TERMINAL4_DIR"
   TERMINAL_EXE="$TERMINAL4_EXE"
   TERMINAL_HST="$TERMINAL4_HST"
+  PROCDUMP="/opt/scripts/procdump.exe"
+  TERMINAL_PROCESS_NAME="terminal.exe"
 }
 is_vm && set +x
 if [ -n "$TERMINAL_DIR" ]; then
