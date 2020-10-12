@@ -313,7 +313,7 @@ EOF
 show_logs()
 {
   local no_lines=${1:-40}
-  find "$TERMINAL_DIR" -name "*.log" -type f $VPRINT -exec tail -n${no_lines} "{}" + | tr -d '\r' | cat -v
+  find "$TERMINAL_DIR" -name "*.log" -type f $VPRINT -exec tail -n${no_lines} "{}" +
 }
 
 # Copy script file given the file path.
